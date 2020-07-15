@@ -1,0 +1,46 @@
+ul {
+  list-style-type: none;
+}
+
+.recipe {
+  max-width: 1000px;
+  margin: 20px auto;
+  text-align: left;
+}
+
+.recipe-title {
+  padding: 15px 25px;
+}
+
+.recipe-cooktime {
+  padding-left: 25px;
+}
+
+.recipe-description {
+  text-align: center;
+}
+
+.recipe-ingredients {
+  padding: 10px 50px;
+}
+
+.ingredient-item,
+.directions-item {
+  padding-bottom: 20px;
+}
+
+label input {
+  margin-right: 30px;
+}
+
+.recipe-image > img {
+  max-width: 100%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 15px;
+}
+
+.recipe-directions {
+  padding: 0 50px;
+}

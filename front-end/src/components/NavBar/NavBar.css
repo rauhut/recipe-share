@@ -1,0 +1,12 @@
+.search-bar {
+  width: 350px !important;
+}
+
+.navbar {
+  background-color: "#cc1414";
+}
+
+.navbar-brand {
+  color: white !important;
+  font-weight: 400;
+}
