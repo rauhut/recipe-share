@@ -28,3 +28,9 @@ button:hover {
   transition-duration: 0.4s;
   text-transform: uppercase;
 }
+
+.spinner {
+  width: 4rem !important;
+  height: 4rem !important;
+  margin: 20px !important;
+}

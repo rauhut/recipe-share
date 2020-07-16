@@ -7,6 +7,7 @@ import {
   CardSubtitle,
   CardBody,
   Modal,
+  Spinner,
 } from "reactstrap";
 import { Link } from "react-router-dom";
 import "./MainPage.css";
@@ -18,6 +19,7 @@ class MainPage extends React.Component {
     this.state = {
       recipes: [],
       isCreateRecipeOpen: false,
+      isLoading: true,
     };
   }
 
@@ -37,6 +39,7 @@ class MainPage extends React.Component {
       })
       .then((recipes) => {
         this.setState({ recipes: recipes.data });
+        this.setState({ isLoading: false });
       })
       .catch((error) => console.log(error));
   }
@@ -54,7 +57,9 @@ class MainPage extends React.Component {
     return (
       <div>
         <h1>Recipe Share</h1>
-        {this.props.isSignedIn ? (
+        {this.state.isLoading ? (
+          <Spinner className="spinner" color="danger" />
+        ) : this.props.isSignedIn ? (
           <button className="button-secondary" onClick={this.toggle}>
             Add new recipe
           </button>
@@ -67,32 +72,28 @@ class MainPage extends React.Component {
             navToRecipe={this.navToRecipe}
           ></AddRecipeModal>
         </Modal>
-        {recipes.length === 0 ? (
-          <h3> There are currently no recipes :( ) </h3>
-        ) : (
-          <div className="recipe-card-grid">
-            {recipes.map((recipe) => {
-              return (
-                <Card>
-                  <CardImg
-                    top
-                    width="100%"
-                    src={recipe.picture}
-                    alt="Card image cap"
-                  />
-                  <CardBody>
-                    <CardTitle>{recipe.name}</CardTitle>
-                    <CardSubtitle>{recipe.cookTime}</CardSubtitle>
-                    <CardText>{recipe.description}</CardText>
-                    <Link to={`/recipe/${recipe._id}`}>
-                      <button className="button-secondary">View Recipe</button>
-                    </Link>
-                  </CardBody>
-                </Card>
-              );
-            })}
-          </div>
-        )}
+        <div className="recipe-card-grid">
+          {recipes.map((recipe) => {
+            return (
+              <Card>
+                <CardImg
+                  top
+                  width="100%"
+                  src={recipe.picture}
+                  alt="Card image cap"
+                />
+                <CardBody>
+                  <CardTitle>{recipe.name}</CardTitle>
+                  <CardSubtitle>{recipe.cookTime}</CardSubtitle>
+                  <CardText>{recipe.description}</CardText>
+                  <Link to={`/recipe/${recipe._id}`}>
+                    <button className="button-secondary">View Recipe</button>
+                  </Link>
+                </CardBody>
+              </Card>
+            );
+          })}
+        </div>
       </div>
     );
   }
