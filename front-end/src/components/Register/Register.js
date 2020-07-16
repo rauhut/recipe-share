@@ -72,7 +72,6 @@ class Register extends React.Component {
       }),
     })
       .then((response) => {
-        console.log(response);
         if (response) {
           return response.json();
         } else {

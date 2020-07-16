@@ -53,7 +53,7 @@ class MainPage extends React.Component {
     const { recipes, isCreateRecipeOpen } = this.state;
     return (
       <div>
-        <h1>Main Page</h1>
+        <h1>Recipe Share</h1>
         {this.props.isSignedIn ? (
           <button className="button-secondary" onClick={this.toggle}>
             Add new recipe

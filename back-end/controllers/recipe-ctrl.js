@@ -52,14 +52,12 @@ getRecipes = async (req, res) => {
 };
 
 getRecipe = async (req, res) => {
-  console.log(req.params.id);
   await Recipe.findOne(
     { _id: mongoose.Types.ObjectId(req.params.id) },
     (err, recipe) => {
       if (err) {
         return res.status(400).json({ success: false, error: err });
       }
-      console.log(recipe);
       if (!recipe) {
         return res
           .status(404)

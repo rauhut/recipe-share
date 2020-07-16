@@ -27,7 +27,6 @@ class SignIn extends React.Component {
   };
 
   onSubmitSignIn = () => {
-    console.log("does this happen??");
     this.setState({ isLoading2: true });
 
     if (this.state.signInEmail.length === 0) {
@@ -38,7 +37,6 @@ class SignIn extends React.Component {
       this.setState({ invalidLogin: true });
     } else {
       this.setState({ isLoading: true });
-      console.log(this.state.isLoading);
       fetch("http://localhost:3000/signin", {
         method: "post",
         headers: { "Content-Type": "application/json" },
