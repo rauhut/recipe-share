@@ -46,6 +46,12 @@ class RecipePage extends Component {
     } = this.state.recipe;
     return (
       <div className="recipe">
+        <button
+          className="button-secondary"
+          onClick={() => this.props.history.push("/")}
+        >
+          &laquo; Back
+        </button>
         <div className="recipe-title">
           <h1>{name}</h1>
         </div>
