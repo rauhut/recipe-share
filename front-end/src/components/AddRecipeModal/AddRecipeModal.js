@@ -22,8 +22,8 @@ class AddRecipeModal extends React.Component {
       isCreateRecipeOpen: false,
       recipeName: "",
       isNameInvalid: false,
-      recipeCookTime: "",
-      isCookTimeInvalid: false,
+      recipeCookTimeHour: "00",
+      recipeCookTimeMinute: "00",
       recipeIngredients: [""],
       recipeSteps: [""],
       recipeDescription: "",
@@ -33,15 +33,14 @@ class AddRecipeModal extends React.Component {
       errMsg: "Unable to create recipe",
       invalidRecipe: false,
     };
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   onSumbitRecipe = () => {
     const recipeIngredients = this.state.recipeIngredients.filter(
-      (ingredient) => ingredient.trim() != ""
+      (ingredient) => ingredient.trim() !== ""
     );
     const recipeSteps = this.state.recipeSteps.filter(
-      (step) => step.trim() != ""
+      (step) => step.trim() !== ""
     );
 
     // Verify that ingredient and direction list are not empty
@@ -63,9 +62,6 @@ class AddRecipeModal extends React.Component {
       if (this.state.recipeDescription === "") {
         this.setState({ isDescriptionInvalid: true });
       }
-      if (this.state.recipeCookTime === "") {
-        this.setState({ isCookTimeInvalid: true });
-      }
       if (!/\.(jpeg|jpg|gif|png)$/.test(this.state.recipePicture)) {
         this.setState({ isPictureInvalid: true });
       }
@@ -75,7 +71,12 @@ class AddRecipeModal extends React.Component {
         headers: { "Content-Type": "application/json", Authorization: token },
         body: JSON.stringify({
           name: this.state.recipeName,
-          cookTime: this.state.recipeCookTime,
+          cookTime:
+            this.state.recipeCookTimeHour === "00"
+              ? `${this.state.recipeCookTimeMinute} mins`
+              : `${parseInt(this.state.recipeCookTimeHour, 10)} hr ${
+                  this.state.recipeCookTimeMinute
+                } mins`,
           ingredients: recipeIngredients,
           steps: recipeSteps,
           description: this.state.recipeDescription,
@@ -104,13 +105,12 @@ class AddRecipeModal extends React.Component {
     this.setState({ isNameInvalid });
   };
 
-  onCookTimeChange = (event) => {
-    this.setState({ recipeCookTime: event.target.value });
-    let isCookTimeInvalid = false;
-    if (event.target.value.length === 0) {
-      isCookTimeInvalid = true;
-    }
-    this.setState({ isCookTimeInvalid });
+  onCookTimeHourChange = (event) => {
+    this.setState({ recipeCookTimeHour: event.target.value });
+  };
+
+  onCookTimeMinuteChange = (event) => {
+    this.setState({ recipeCookTimeMinute: event.target.value });
   };
 
   onDescriptionChange = (event) => {
@@ -138,6 +138,7 @@ class AddRecipeModal extends React.Component {
           <Input
             type="text"
             value={ingredient || ""}
+            placeholder="Add an ingredient for this recipe"
             onChange={this.handleChangeIngredients.bind(this, i)}
           />
           {i !== 0 ? (
@@ -180,6 +181,7 @@ class AddRecipeModal extends React.Component {
           <Input
             type="textarea"
             value={step || ""}
+            placeholder="Add an instruction for completing this recipe"
             onChange={this.handleChangeSteps.bind(this, i)}
           />
           {i !== 0 ? (
@@ -215,9 +217,12 @@ class AddRecipeModal extends React.Component {
     this.setState({ recipeSteps });
   }
 
-  handleSubmit(event) {
-    alert("A recipe was submitted: " + this.state.recipeIngredients.join(", "));
-    event.preventDefault();
+  generateOptions(min, max) {
+    let list = [];
+    for (let i = min; i <= max; i++) {
+      list.push(("0" + i).slice(-2));
+    }
+    return list.map((number, i) => <option>{number}</option>);
   }
 
   render() {
@@ -226,7 +231,7 @@ class AddRecipeModal extends React.Component {
       <Fragment>
         <ModalHeader toggle={toggle}>Add a New Recipe</ModalHeader>
         <ModalBody>
-          <Form onSubmit={this.handleSubmit}>
+          <Form>
             <FormGroup>
               <Label>Recipe Name</Label>
               <Input
@@ -251,17 +256,29 @@ class AddRecipeModal extends React.Component {
               />
               <FormFeedback>Recipe description must not be empty</FormFeedback>
             </FormGroup>
-            <FormGroup>
-              <Label>Total Cook Time</Label>
-              <Input
-                type="number"
-                name="cookTime"
-                id="cookTime"
-                onChange={this.onCookTimeChange}
-                invalid={this.state.isCookTimeInvalid}
-              />
-              <FormFeedback>Recipe cook time must not be empty</FormFeedback>
-            </FormGroup>
+            <Label>Total Cook Time</Label>
+            <Form inline className="timeInput">
+              <FormGroup>
+                Hours:
+                <Input
+                  type="select"
+                  name="cookTimeHours"
+                  id="cookTimeHours"
+                  onChange={this.onCookTimeHourChange}
+                >
+                  {this.generateOptions(0, 24)}
+                </Input>
+                Minutes:
+                <Input
+                  type="select"
+                  name="cookTimeMinutes"
+                  id="cookTimeMinutes"
+                  onChange={this.onCookTimeMinuteChange}
+                >
+                  {this.generateOptions(0, 59)}
+                </Input>
+              </FormGroup>
+            </Form>
             <FormGroup invalid>
               <Label>Ingredients</Label>
               {this.createIngredientsList()}
@@ -284,7 +301,6 @@ class AddRecipeModal extends React.Component {
                 onClick={this.addStepsClick.bind(this)}
               />
             </FormGroup>
-
             <FormGroup>
               <Label>Photo</Label>
               <Input

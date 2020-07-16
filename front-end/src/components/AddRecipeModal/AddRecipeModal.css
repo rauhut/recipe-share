@@ -5,3 +5,15 @@
 form {
   width: auto !important;
 }
+
+.timeInput {
+  padding-bottom: 10px;
+}
+
+label {
+  font-weight: 500;
+}
+
+select {
+  margin: 0 5px !important;
+}
