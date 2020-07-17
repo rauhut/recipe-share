@@ -6,6 +6,7 @@ import NavBar from "./components/NavBar/NavBar";
 import RecipePage from "./components/RecipePage/RecipePage";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.css";
+import ResultsPage from "./components/ResultsPage/ResultsPage";
 
 const initialState = {
   isSignedIn: false,
@@ -15,6 +16,8 @@ const initialState = {
     email: "",
     recipes: "",
   },
+  searchEntry: "",
+  filteredRecipes: [],
 };
 
 class App extends Component {
@@ -68,6 +71,45 @@ class App extends Component {
     });
   };
 
+  onRecipeSearch = (search) => {
+    this.setState({ searchEntry: search });
+  };
+
+  // filterRecipes = () => {
+  //   fetch("http://localhost:3000/recipes", {
+  //     method: "get",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //   })
+  //     .then((response) => {
+  //       if (response.ok) {
+  //         return response.json();
+  //       } else {
+  //         throw new Error("Something went wrong when trying to get recipes");
+  //       }
+  //     })
+  //     .then((recipes) => {
+  //       let filtered = [];
+  //       recipes.data.forEach((recipe) => {
+  //         console.log(recipe);
+  //         if (
+  //           recipe.name
+  //             .toLowerCase()
+  //             .includes(this.state.searchEntry.toLowerCase())
+  //         ) {
+  //           filtered.push(recipe);
+  //         }
+  //       });
+
+  //       this.setState({
+  //         recipes: filtered,
+  //       });
+  //       this.setState({ isLoading: false });
+  //     })
+  //     .catch((error) => console.log(error));
+  // }
+
   onRouteChange = (route) => {
     if (route === "signout") {
       this.setState({ isSignedIn: false });
@@ -85,7 +127,7 @@ class App extends Component {
   };
 
   render() {
-    const { isSignedIn, user } = this.state;
+    const { isSignedIn, user, searchEntry } = this.state;
     return (
       <Router>
         <div className="App">
@@ -94,6 +136,7 @@ class App extends Component {
             onRouteChange={this.onRouteChange}
             toggleModal={this.toggleModal}
             user={user}
+            onRecipeSearch={this.onRecipeSearch}
           />
           <Switch>
             <Route
@@ -124,6 +167,12 @@ class App extends Component {
               )}
             />
             <Route path="/recipe/:id" component={RecipePage} />
+            <Route
+              path="/search"
+              render={(props) => (
+                <ResultsPage {...props} searchEntry={searchEntry} />
+              )}
+            />
           </Switch>
         </div>
       </Router>

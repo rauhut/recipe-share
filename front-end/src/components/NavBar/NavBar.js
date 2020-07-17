@@ -9,6 +9,9 @@ import {
   Input,
   NavbarText,
   NavbarToggler,
+  InputGroupAddon,
+  Button,
+  InputGroup,
 } from "reactstrap";
 import "./NavBar.css";
 
@@ -17,8 +20,14 @@ class NavBar extends React.Component {
     super(props);
     this.state = {
       isOpen: false,
+      searchEntry: "",
+      recipes: [],
     };
   }
+
+  onSearchChange = (event) => {
+    this.setState({ searchEntry: event.target.value });
+  };
 
   toggle = () => {
     this.setState({ isOpen: !this.state.isOpen });
@@ -30,15 +39,30 @@ class NavBar extends React.Component {
 
     return (
       <div>
-        <Navbar style={{ backgroundColor: "#cc1414" }} light expand="md">
+        <Navbar light expand="md">
           <NavbarBrand href="/">Recipe Share</NavbarBrand>
-          <Input
-            className="search-bar"
-            type="search"
-            name="search"
-            id="searchInput"
-            placeholder="Search for a Recipe"
-          />
+          <InputGroup>
+            <Input
+              className="search-bar"
+              type="search"
+              name="search"
+              id="searchInput"
+              placeholder="Search for a Recipe"
+              onChange={this.onSearchChange}
+            />
+            <InputGroupAddon addonType="append">
+              <Link to={`/search`}>
+                <Button
+                  color="secondary"
+                  onClick={() =>
+                    this.props.onRecipeSearch(this.state.searchEntry)
+                  }
+                >
+                  Search
+                </Button>
+              </Link>
+            </InputGroupAddon>
+          </InputGroup>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={isOpen} navbar>
             <Nav className="mr-auto" navbar></Nav>

@@ -1,17 +1,8 @@
 import React from "react";
-import {
-  Card,
-  CardImg,
-  CardTitle,
-  CardText,
-  CardSubtitle,
-  CardBody,
-  Modal,
-  Spinner,
-} from "reactstrap";
-import { Link } from "react-router-dom";
+import { Modal, Spinner } from "reactstrap";
 import "./MainPage.css";
 import AddRecipeModal from "../AddRecipeModal/AddRecipeModal";
+import RecipeDisplay from "../RecipeDisplay/RecipeDisplay";
 
 class MainPage extends React.Component {
   constructor(props) {
@@ -72,28 +63,7 @@ class MainPage extends React.Component {
             navToRecipe={this.navToRecipe}
           ></AddRecipeModal>
         </Modal>
-        <div className="recipe-card-grid">
-          {recipes.map((recipe) => {
-            return (
-              <Card>
-                <CardImg
-                  top
-                  width="100%"
-                  src={recipe.picture}
-                  alt="Card image cap"
-                />
-                <CardBody>
-                  <CardTitle>{recipe.name}</CardTitle>
-                  <CardSubtitle>{recipe.cookTime}</CardSubtitle>
-                  <CardText>{recipe.description}</CardText>
-                  <Link to={`/recipe/${recipe._id}`}>
-                    <button className="button-secondary">View Recipe</button>
-                  </Link>
-                </CardBody>
-              </Card>
-            );
-          })}
-        </div>
+        <RecipeDisplay recipes={recipes} />
       </div>
     );
   }
