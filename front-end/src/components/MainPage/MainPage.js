@@ -1,6 +1,5 @@
 import React from "react";
 import { Modal, Spinner } from "reactstrap";
-import "./MainPage.css";
 import AddRecipeModal from "../AddRecipeModal/AddRecipeModal";
 import RecipeDisplay from "../RecipeDisplay/RecipeDisplay";
 

@@ -8,6 +8,7 @@ import {
   CardBody,
 } from "reactstrap";
 import { Link } from "react-router-dom";
+import "./RecipeDisplay.css";
 
 const RecipeDisplay = ({ recipes }) => {
   return (
