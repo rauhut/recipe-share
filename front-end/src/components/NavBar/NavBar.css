@@ -1,12 +1,31 @@
-.input-group {
-  width: 350px !important;
+.search {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  max-width: 600px;
+}
+
+.search-bar {
+  width: 100%;
+}
+
+.search-btn {
+  margin-left: -93px;
 }
 
 .navbar {
   background-color: #cc1414;
 }
 
+.home-nav {
+  flex-grow: 0 !important;
+}
+
 .navbar-brand {
   color: white !important;
   font-weight: 400;
+}
+
+.navbar-collapse {
+  flex-grow: 0;
 }

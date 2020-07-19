@@ -231,7 +231,7 @@ class AddRecipeModal extends React.Component {
       <Fragment>
         <ModalHeader toggle={toggle}>Add a New Recipe</ModalHeader>
         <ModalBody>
-          <Form>
+          <Form className="add-recipe-form">
             <FormGroup>
               <Label>Recipe Name</Label>
               <Input

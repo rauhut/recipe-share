@@ -9,9 +9,6 @@ import {
   Input,
   NavbarText,
   NavbarToggler,
-  InputGroupAddon,
-  Button,
-  InputGroup,
 } from "reactstrap";
 import "./NavBar.css";
 
@@ -40,8 +37,10 @@ class NavBar extends React.Component {
     return (
       <div>
         <Navbar light expand="md">
-          <NavbarBrand href="/">Recipe Share</NavbarBrand>
-          <InputGroup>
+          <Collapse className="home-nav" isOpen={isOpen} navbar>
+            <NavbarBrand href="/">Recipe Share</NavbarBrand>
+          </Collapse>
+          <div className="search">
             <Input
               className="search-bar"
               type="search"
@@ -50,19 +49,17 @@ class NavBar extends React.Component {
               placeholder="Search for a Recipe"
               onChange={this.onSearchChange}
             />
-            <InputGroupAddon addonType="append">
-              <Link to={`/search`}>
-                <Button
-                  color="secondary"
-                  onClick={() =>
-                    this.props.onRecipeSearch(this.state.searchEntry)
-                  }
-                >
-                  Search
-                </Button>
-              </Link>
-            </InputGroupAddon>
-          </InputGroup>
+            <Link className="search-btn" to={`/search`}>
+              <button
+                className="button-primary"
+                onClick={() =>
+                  this.props.onRecipeSearch(this.state.searchEntry)
+                }
+              >
+                Search
+              </button>
+            </Link>
+          </div>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={isOpen} navbar>
             <Nav className="mr-auto" navbar></Nav>
