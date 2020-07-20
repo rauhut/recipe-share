@@ -38,7 +38,9 @@ class NavBar extends React.Component {
       <div>
         <Navbar light expand="md">
           <Collapse className="home-nav" isOpen={isOpen} navbar>
-            <NavbarBrand href="/">Recipe Share</NavbarBrand>
+            <Link to={"/"}>
+              <NavbarBrand>Recipe Share</NavbarBrand>
+            </Link>
           </Collapse>
           <div className="search">
             <Input

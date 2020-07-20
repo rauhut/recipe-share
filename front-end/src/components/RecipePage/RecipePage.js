@@ -69,7 +69,7 @@ class RecipePage extends Component {
               <img src={picture} alt={name} />
             </div>
             <div className="recipe-ingredients">
-              <h3>Ingredients:</h3>
+              <h3>Ingredients</h3>
               <ul>
                 {ingredients.map((ingredent, i) => {
                   return (
@@ -85,12 +85,12 @@ class RecipePage extends Component {
             </div>
             <hr></hr>
             <div className="recipe-directions">
-              <h3>Directions:</h3>
+              <h3>Directions</h3>
               <ol>
                 {steps.map((step, i) => {
                   return (
                     <li key={i} className="directions-item">
-                      {step}
+                      <label className="direction-container">{step} </label>
                     </li>
                   );
                 })}
