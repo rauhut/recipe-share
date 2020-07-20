@@ -75,41 +75,6 @@ class App extends Component {
     this.setState({ searchEntry: search });
   };
 
-  // filterRecipes = () => {
-  //   fetch("http://localhost:3000/recipes", {
-  //     method: "get",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //   })
-  //     .then((response) => {
-  //       if (response.ok) {
-  //         return response.json();
-  //       } else {
-  //         throw new Error("Something went wrong when trying to get recipes");
-  //       }
-  //     })
-  //     .then((recipes) => {
-  //       let filtered = [];
-  //       recipes.data.forEach((recipe) => {
-  //         console.log(recipe);
-  //         if (
-  //           recipe.name
-  //             .toLowerCase()
-  //             .includes(this.state.searchEntry.toLowerCase())
-  //         ) {
-  //           filtered.push(recipe);
-  //         }
-  //       });
-
-  //       this.setState({
-  //         recipes: filtered,
-  //       });
-  //       this.setState({ isLoading: false });
-  //     })
-  //     .catch((error) => console.log(error));
-  // }
-
   onRouteChange = (route) => {
     if (route === "signout") {
       this.setState({ isSignedIn: false });
