@@ -11,7 +11,7 @@ class ResultsPage extends React.Component {
   }
 
   componentDidMount = () => {
-    fetch("http://localhost:3000/recipes", {
+    fetch("https://recipe-share-backend.herokuapp.com/recipes", {
       method: "get",
       headers: {
         "Content-Type": "application/json",

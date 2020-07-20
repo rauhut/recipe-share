@@ -66,7 +66,7 @@ class AddRecipeModal extends React.Component {
         this.setState({ isPictureInvalid: true });
       }
 
-      fetch("http://localhost:3000/recipe", {
+      fetch("https://recipe-share-backend.herokuapp.com/recipe", {
         method: "post",
         headers: { "Content-Type": "application/json", Authorization: token },
         body: JSON.stringify({

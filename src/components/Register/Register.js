@@ -62,7 +62,7 @@ class Register extends React.Component {
       this.setState({ isPasswordInvalid: true });
     }
 
-    fetch("http://localhost:3000/register", {
+    fetch("https://recipe-share-backend.herokuapp.com/register", {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -83,7 +83,7 @@ class Register extends React.Component {
         if (data.success) {
           if (data.token) {
             this.saveAuthTokenInSession(data.token);
-            fetch("http://localhost:3000/profile", {
+            fetch("https://recipe-share-backend.herokuapp.com/profile", {
               method: "get",
               headers: {
                 "Content-Type": "application/json",

@@ -29,7 +29,7 @@ class App extends Component {
   componentDidMount() {
     const token = window.sessionStorage.getItem("token");
     if (token) {
-      fetch("http://localhost:3000/signin", {
+      fetch("https://recipe-share-backend.herokuapp.com/signin", {
         method: "post",
         headers: {
           "Content-Type": "application/json",
@@ -39,7 +39,7 @@ class App extends Component {
         .then((response) => response.json())
         .then((data) => {
           if (data.user) {
-            fetch("http://localhost:3000/profile", {
+            fetch("https://recipe-share-backend.herokuapp.com/profile", {
               method: "get",
               headers: {
                 "Content-Type": "application/json",

@@ -18,12 +18,15 @@ class RecipePage extends Component {
   }
 
   componentDidMount() {
-    fetch(`http://localhost:3000/recipe/${this.props.match.params.id}`, {
-      method: "get",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
+    fetch(
+      `https://recipe-share-backend.herokuapp.com/recipe/${this.props.match.params.id}`,
+      {
+        method: "get",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    )
       .then((response) => {
         if (response.ok) {
           return response.json();

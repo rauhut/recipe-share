@@ -44,7 +44,7 @@ class ProfileDropdown extends React.Component {
                 className="button-secondary"
                 onClick={() => {
                   const token = window.sessionStorage.getItem("token");
-                  fetch("http://localhost:3000/signout", {
+                  fetch("https://recipe-share-backend.herokuapp.com/signout", {
                     method: "post",
                     headers: {
                       "Content-Type": "application/json",

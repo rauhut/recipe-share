@@ -37,7 +37,7 @@ class SignIn extends React.Component {
       this.setState({ invalidLogin: true });
     } else {
       this.setState({ isLoading: true });
-      fetch("http://localhost:3000/signin", {
+      fetch("https://recipe-share-backend.herokuapp.com/signin", {
         method: "post",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -59,7 +59,7 @@ class SignIn extends React.Component {
         .then((data) => {
           if (data.user) {
             this.saveAuthTokenInSession(data.token);
-            fetch("http://localhost:3000/profile", {
+            fetch("https://recipe-share-backend.herokuapp.com/profile", {
               method: "get",
               headers: {
                 "Content-Type": "application/json",

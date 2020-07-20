@@ -2,10 +2,6 @@ ul {
   list-style-type: none;
 }
 
-h3 {
-  padding-bottom: 30px;
-}
-
 .recipe {
   max-width: 1000px;
   margin: 20px auto;

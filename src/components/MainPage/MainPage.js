@@ -15,7 +15,7 @@ class MainPage extends React.Component {
   }
 
   componentDidMount() {
-    fetch("http://localhost:3000/recipes", {
+    fetch("https://recipe-share-backend.herokuapp.com/recipes", {
       method: "get",
       headers: {
         "Content-Type": "application/json",
@@ -32,7 +32,10 @@ class MainPage extends React.Component {
         this.setState({ recipes: recipes.data });
         this.setState({ isLoading: false });
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        console.log(error);
+        this.setState({ isLoading: false });
+      });
   }
 
   toggle = () => {
