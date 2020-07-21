@@ -3,6 +3,7 @@ import { Modal, Spinner } from "reactstrap";
 import { Link } from "react-router-dom";
 import AddRecipeModal from "../AddRecipeModal/AddRecipeModal";
 import RecipeDisplay from "../RecipeDisplay/RecipeDisplay";
+import "./MainPage.css";
 
 class MainPage extends React.Component {
   constructor(props) {
@@ -58,9 +59,9 @@ class MainPage extends React.Component {
             Add new recipe
           </button>
         ) : (
-          <Link to={"/register"}>
-            <div>Create an account to add a new recipe</div>
-          </Link>
+          <h6>
+            <Link to={"/register"}>Create an account to add a new recipe</Link>
+          </h6>
         )}
         <Modal isOpen={isCreateRecipeOpen} toggle={this.toggle}>
           <AddRecipeModal
