@@ -131,7 +131,10 @@ class App extends Component {
                 />
               )}
             />
-            <Route path="/recipe/:id" component={RecipePage} />
+            <Route
+              path="/recipe/:id"
+              render={(props) => <RecipePage {...props} user={user} />}
+            />
             <Route
               path="/search"
               render={(props) => (

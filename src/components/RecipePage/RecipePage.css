@@ -2,6 +2,11 @@ ul {
   list-style-type: none;
 }
 
+.top {
+  display: flex;
+  justify-content: space-between;
+}
+
 .recipe {
   max-width: 1000px;
   margin: 20px auto;
