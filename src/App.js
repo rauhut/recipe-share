@@ -12,8 +12,7 @@ const initialState = {
   isSignedIn: false,
   user: {
     id: "",
-    name: "",
-    email: "",
+    username: "",
     recipes: "",
   },
   searchEntry: "",
@@ -48,7 +47,7 @@ class App extends Component {
             })
               .then((response) => response.json())
               .then((user) => {
-                if (user && user.email) {
+                if (user && user.username) {
                   this.loadUser(user);
                   this.onRouteChange("mainPage");
                   this.setState({ isSignedIn: true });
@@ -64,8 +63,7 @@ class App extends Component {
     this.setState({
       user: {
         id: data._id,
-        name: data.name,
-        email: data.email,
+        username: data.username,
         recipes: data.recipes,
       },
     });

@@ -6,7 +6,7 @@ class SignIn extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      signInEmail: "",
+      signInUsername: "",
       signInPassword: "",
       isLoading: false,
       errorMsg: "",
@@ -14,8 +14,8 @@ class SignIn extends React.Component {
     };
   }
 
-  onEmailChange = (event) => {
-    this.setState({ signInEmail: event.target.value });
+  onUsernameChange = (event) => {
+    this.setState({ signInUsername: event.target.value });
   };
 
   onPasswordChange = (event) => {
@@ -29,8 +29,8 @@ class SignIn extends React.Component {
   onSubmitSignIn = () => {
     this.setState({ isLoading2: true });
 
-    if (this.state.signInEmail.length === 0) {
-      this.setState({ errorMsg: "Please enter your email" });
+    if (this.state.signInUsername.length === 0) {
+      this.setState({ errorMsg: "Please enter your username" });
       this.setState({ invalidLogin: true });
     } else if (this.state.signInPassword.length === 0) {
       this.setState({ errorMsg: "Please enter your password" });
@@ -41,7 +41,7 @@ class SignIn extends React.Component {
         method: "post",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          email: this.state.signInEmail,
+          username: this.state.signInUsername,
           password: this.state.signInPassword,
         }),
       })
@@ -68,7 +68,7 @@ class SignIn extends React.Component {
             })
               .then((response) => response.json())
               .then((user) => {
-                if (user && user.email) {
+                if (user && user.username) {
                   this.props.loadUser(user);
                   this.props.onRouteChange("signingIn");
                   this.props.history.push("/");
@@ -98,12 +98,12 @@ class SignIn extends React.Component {
         <h1>Sign In</h1>
         <Form>
           <FormGroup>
-            <Label>Email</Label>
+            <Label>Username</Label>
             <Input
-              type="email"
-              name="email-address"
-              id="email-address"
-              onChange={this.onEmailChange}
+              type="username"
+              name="username"
+              id="username"
+              onChange={this.onUsernameChange}
             ></Input>
           </FormGroup>
           <FormGroup>

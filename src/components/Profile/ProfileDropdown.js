@@ -31,7 +31,7 @@ class ProfileDropdown extends React.Component {
             data-toggle="dropdown"
             aria-expanded={this.dropdownOpen}
           >
-            <h3>{this.props.user.name}</h3>
+            <h3>{this.props.user.username}</h3>
           </DropdownToggle>
           <DropdownMenu
             right

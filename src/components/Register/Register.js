@@ -6,34 +6,25 @@ class Register extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      registerEmail: "",
-      isEmailInvalid: false,
+      registerUsername: "",
+      isUsernameInvalid: false,
       errorMsg: "Unable to register",
       registerPassword: "",
       isPasswordInvalid: false,
-      registerName: "",
-      isNameInvalid: false,
+      // registerName: "",
+      // isNameInvalid: false,
       isLoading: false,
       invalidLogin: false,
     };
   }
 
-  onNameChange = (event) => {
-    this.setState({ registerName: event.target.value });
-    let isNameInvalid = false;
+  onUsernameChange = (event) => {
+    this.setState({ registerUsername: event.target.value });
+    let registerUsername = false;
     if (event.target.value.length === 0) {
-      isNameInvalid = true;
+      registerUsername = true;
     }
-    this.setState({ isNameInvalid });
-  };
-
-  onEmailChange = (event) => {
-    this.setState({ registerEmail: event.target.value });
-    let isEmailInvalid = false;
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(event.target.value)) {
-      isEmailInvalid = true;
-    }
-    this.setState({ isEmailInvalid });
+    this.setState({ registerUsername });
   };
 
   onPasswordChange = (event) => {
@@ -52,11 +43,8 @@ class Register extends React.Component {
   onSubmitRegister = () => {
     this.setState({ isLoading: true });
 
-    if (this.state.registerName === "") {
+    if (this.state.registerUsername === "") {
       this.setState({ isNameInvalid: true });
-    }
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.state.registerEmail)) {
-      this.setState({ isEmailInvalid: true });
     }
     if (this.state.registerPassword === "") {
       this.setState({ isPasswordInvalid: true });
@@ -66,8 +54,7 @@ class Register extends React.Component {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        name: this.state.registerName,
-        email: this.state.registerEmail,
+        username: this.state.registerUsername,
         password: this.state.registerPassword,
       }),
     })
@@ -92,7 +79,7 @@ class Register extends React.Component {
             })
               .then((response) => response.json())
               .then((user) => {
-                if (user && user.email) {
+                if (user && user.username) {
                   this.props.loadUser(user);
                   this.props.onRouteChange("signingIn");
                   this.props.history.push("/");
@@ -126,26 +113,15 @@ class Register extends React.Component {
         <h1>Register</h1>
         <Form>
           <FormGroup>
-            <Label>Name</Label>
+            <Label>Username</Label>
             <Input
-              type="name"
-              name="name"
-              id="name"
-              onChange={this.onNameChange}
-              invalid={this.state.isNameInvalid}
+              type="username"
+              name="username"
+              id="username"
+              onChange={this.onUsernameChange}
+              invalid={this.state.isUsernameInvalid}
             ></Input>
-            <FormFeedback>Name must not be empty</FormFeedback>
-          </FormGroup>
-          <FormGroup>
-            <Label>Email</Label>
-            <Input
-              type="email"
-              name="email-address"
-              id="email-address"
-              onChange={this.onEmailChange}
-              invalid={this.state.isEmailInvalid}
-            ></Input>
-            <FormFeedback>Invalid email address</FormFeedback>
+            <FormFeedback>Username must not be empty</FormFeedback>
           </FormGroup>
           <FormGroup>
             <Label>Password</Label>
