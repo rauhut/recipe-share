@@ -11,8 +11,6 @@ class Register extends React.Component {
       errorMsg: "Unable to register",
       registerPassword: "",
       isPasswordInvalid: false,
-      // registerName: "",
-      // isNameInvalid: false,
       isLoading: false,
       invalidLogin: false,
     };
@@ -20,11 +18,11 @@ class Register extends React.Component {
 
   onUsernameChange = (event) => {
     this.setState({ registerUsername: event.target.value });
-    let registerUsername = false;
+    let isUsernameInvalid = false;
     if (event.target.value.length === 0) {
-      registerUsername = true;
+      isUsernameInvalid = true;
     }
-    this.setState({ registerUsername });
+    this.setState({ isUsernameInvalid });
   };
 
   onPasswordChange = (event) => {
@@ -44,7 +42,7 @@ class Register extends React.Component {
     this.setState({ isLoading: true });
 
     if (this.state.registerUsername === "") {
-      this.setState({ isNameInvalid: true });
+      this.setState({ isUsernameInvalid: true });
     }
     if (this.state.registerPassword === "") {
       this.setState({ isPasswordInvalid: true });
