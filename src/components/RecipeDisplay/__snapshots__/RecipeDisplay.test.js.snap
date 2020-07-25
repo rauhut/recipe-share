@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RecipeDisplay renders without crashing 1`] = `
+"<div className=\\"recipe-card-grid\\">
+  <Card tag=\\"div\\">
+    <CardImg top={true} width=\\"100%\\" src={[undefined]} alt=\\"Card image cap\\" tag=\\"img\\" />
+    <CardBody tag=\\"div\\">
+      <CardTitle tag=\\"div\\">
+        cookies
+      </CardTitle>
+      <CardSubtitle tag=\\"div\\">
+        30 mins
+      </CardSubtitle>
+      <CardText tag=\\"p\\">
+        just basic cookies
+      </CardText>
+      <Link to=\\"/recipe/undefined\\">
+        <button className=\\"button-secondary\\">
+          View Recipe
+        </button>
+      </Link>
+    </CardBody>
+  </Card>
+  <Card tag=\\"div\\">
+    <CardImg top={true} width=\\"100%\\" src={[undefined]} alt=\\"Card image cap\\" tag=\\"img\\" />
+    <CardBody tag=\\"div\\">
+      <CardTitle tag=\\"div\\">
+        meatballs
+      </CardTitle>
+      <CardSubtitle tag=\\"div\\">
+        30 mins
+      </CardSubtitle>
+      <CardText tag=\\"p\\">
+        just basic meatballs
+      </CardText>
+      <Link to=\\"/recipe/undefined\\">
+        <button className=\\"button-secondary\\">
+          View Recipe
+        </button>
+      </Link>
+    </CardBody>
+  </Card>
+</div>"
+`;
