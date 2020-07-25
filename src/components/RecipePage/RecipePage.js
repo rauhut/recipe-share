@@ -83,10 +83,10 @@ class RecipePage extends Component {
       createdBy,
       _id,
     } = this.state.recipe;
-    const { modal } = this.state;
+    const { modal, isLoading } = this.state;
     return (
       <div>
-        {this.state.isLoading ? (
+        {isLoading ? (
           <Spinner className="spinner" color="danger" />
         ) : (
           <div className="recipe">
@@ -99,7 +99,11 @@ class RecipePage extends Component {
               </button>
               {createdBy === this.props.user.id && (
                 <div className="delete-btn">
-                  <button className="button-secondary" onClick={this.toggle}>
+                  <button
+                    className="button-secondary"
+                    id="delete-btn"
+                    onClick={this.toggle}
+                  >
                     Delete
                   </button>
                   <Modal isOpen={modal} toggle={this.toggle}>
@@ -116,7 +120,11 @@ class RecipePage extends Component {
                       >
                         Delete
                       </button>{" "}
-                      <button className="button-primary" onClick={this.toggle}>
+                      <button
+                        className="button-primary"
+                        id="cancel-btn"
+                        onClick={this.toggle}
+                      >
                         Cancel
                       </button>
                     </ModalFooter>
