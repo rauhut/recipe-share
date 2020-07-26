@@ -19,7 +19,6 @@ class AddRecipeModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isCreateRecipeOpen: false,
       recipeName: "",
       isNameInvalid: false,
       recipeCookTimeHour: "00",
@@ -136,6 +135,7 @@ class AddRecipeModal extends React.Component {
       <div key={i}>
         <InputGroup>
           <Input
+            id={`ingredient-input-${i}`}
             type="text"
             value={ingredient || ""}
             placeholder="Add an ingredient for this recipe"
@@ -144,6 +144,7 @@ class AddRecipeModal extends React.Component {
           {i !== 0 ? (
             <InputGroupAddon addonType="append">
               <Button
+                id={`remove-ingredient-row-${i}`}
                 color="danger"
                 onClick={this.removeIngredientsClick.bind(this, i)}
               >
@@ -179,6 +180,7 @@ class AddRecipeModal extends React.Component {
       <div key={i}>
         <InputGroup>
           <Input
+            id={`step-input-${i}`}
             type="textarea"
             value={step || ""}
             placeholder="Add an instruction for completing this recipe"
@@ -187,6 +189,7 @@ class AddRecipeModal extends React.Component {
           {i !== 0 ? (
             <InputGroupAddon addonType="append">
               <Button
+                id={`remove-step-row-${i}`}
                 color="danger"
                 onClick={this.removeStepsClick.bind(this, i)}
               >
@@ -284,6 +287,7 @@ class AddRecipeModal extends React.Component {
               {this.createIngredientsList()}
               <input
                 className="button-secondary"
+                id="add-ingredient-row"
                 type="button"
                 value="Add row"
                 onClick={this.addIngredientsClick.bind(this)}
@@ -296,6 +300,7 @@ class AddRecipeModal extends React.Component {
               {this.createStepsList()}
               <input
                 className="button-secondary"
+                id="add-step-row"
                 type="button"
                 value="Add row"
                 onClick={this.addStepsClick.bind(this)}
@@ -321,7 +326,11 @@ class AddRecipeModal extends React.Component {
           </div>
         </ModalBody>
         <ModalFooter>
-          <button className="button-secondary" onClick={this.onSumbitRecipe}>
+          <button
+            id="create-btn"
+            className="button-secondary"
+            onClick={this.onSumbitRecipe}
+          >
             Add Recipe
           </button>{" "}
           <button className="button-secondary" onClick={toggle}>
