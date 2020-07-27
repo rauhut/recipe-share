@@ -26,63 +26,73 @@ class SignIn extends React.Component {
     window.sessionStorage.setItem("token", token);
   };
 
-  onSubmitSignIn = () => {
-    this.setState({ isLoading2: true });
+  onSubmitSignIn = async () => {
+    this.setState({ isLoading: true });
 
     if (this.state.signInUsername.length === 0) {
       this.setState({ errorMsg: "Please enter your username" });
       this.setState({ invalidLogin: true });
+      this.setState({ isLoading: false });
     } else if (this.state.signInPassword.length === 0) {
       this.setState({ errorMsg: "Please enter your password" });
       this.setState({ invalidLogin: true });
+      this.setState({ isLoading: false });
     } else {
       this.setState({ isLoading: true });
-      fetch("https://recipe-share-backend.herokuapp.com/signin", {
-        method: "post",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          username: this.state.signInUsername,
-          password: this.state.signInPassword,
-        }),
-      })
-        .then((response) => {
-          if (response.ok) {
-            return response.json();
-          } else {
-            this.setState({ invalidLogin: true });
-            this.setState({
-              errorMsg: "Incorrect user credentials, please try again",
-            });
-            throw new Error("Something went wrong when trying to sign in");
+
+      try {
+        const res = await fetch(
+          "https://recipe-share-backend.herokuapp.com/signin",
+          {
+            method: "post",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              username: this.state.signInUsername,
+              password: this.state.signInPassword,
+            }),
           }
-        })
-        .then((data) => {
+        );
+        if (!res.ok) {
+          this.setState({ invalidLogin: true });
+          this.setState({
+            errorMsg: "Incorrect user credentials, please try again",
+          });
+          throw new Error("Something went wrong when trying to signin");
+        } else {
+          const data = await res.json();
           if (data.user) {
             this.saveAuthTokenInSession(data.token);
-            fetch("https://recipe-share-backend.herokuapp.com/profile", {
-              method: "get",
-              headers: {
-                "Content-Type": "application/json",
-                Authorization: data.token,
-              },
-            })
-              .then((response) => response.json())
-              .then((user) => {
-                if (user && user.username) {
-                  this.props.loadUser(user);
-                  this.props.onRouteChange("signingIn");
-                  this.props.history.push("/");
+            try {
+              const response = await fetch(
+                "https://recipe-share-backend.herokuapp.com/profile",
+                {
+                  method: "get",
+                  headers: {
+                    "Content-Type": "application/json",
+                    Authorization: data.token,
+                  },
                 }
-              })
-              .catch((error) => {
-                this.setState({ isLoading: false });
-              });
+              );
+              const user = await response.json();
+              this.props.loadUser(user);
+              this.props.onRouteChange("signingIn");
+              this.props.history.push("/");
+            } catch (err) {
+              this.setState({ isLoading: false });
+              console.log(err);
+            }
+          } else {
+            if (data.error) {
+              this.setState({ errorMsg: data.error });
+            }
+            this.setState({ invalidLogin: true });
+            this.setState({ isLoading: false });
           }
-        })
-        .catch((error) => {
-          this.setState({ invalidLogin: true });
-          this.setState({ isLoading: false });
-        });
+        }
+      } catch (err) {
+        this.setState({ invalidLogin: true });
+        this.setState({ isLoading: false });
+      }
     }
   };
 

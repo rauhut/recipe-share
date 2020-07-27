@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SignIn renders for user 1`] = `
+"<div className=\\"signin-form\\" onKeyPress={[Function (anonymous)]}>
+  <h1>
+    Sign In
+  </h1>
+  <Form tag=\\"form\\">
+    <FormGroup tag=\\"div\\">
+      <Label tag=\\"label\\" widths={{...}}>
+        Username
+      </Label>
+      <Input type=\\"username\\" name=\\"username\\" id=\\"username\\" onChange={[Function (anonymous)]} />
+    </FormGroup>
+    <FormGroup tag=\\"div\\">
+      <Label tag=\\"label\\" widths={{...}}>
+        Password
+      </Label>
+      <Input type=\\"password\\" name=\\"password\\" id=\\"password\\" onChange={[Function (anonymous)]} />
+    </FormGroup>
+  </Form>
+  <div />
+  <div className=\\"btn-container\\">
+    <button className=\\"button-secondary\\" onClick={[Function (anonymous)]}>
+      <span>
+        Sign In
+      </span>
+    </button>
+    <button className=\\"button-secondary\\" onClick={[Function: onClick]}>
+      Back
+    </button>
+  </div>
+</div>"
+`;
