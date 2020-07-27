@@ -1,7 +1,6 @@
 import React from "react";
-import { shallow, mount } from "enzyme";
+import { shallow } from "enzyme";
 import MainPage from "./MainPage";
-import { MemoryRouter } from "react-router-dom";
 
 describe("RecipeDisplay", () => {
   let wrapper;
