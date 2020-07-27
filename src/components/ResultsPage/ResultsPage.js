@@ -10,26 +10,27 @@ class ResultsPage extends React.Component {
     };
   }
 
-  componentDidMount = () => {
-    fetch("https://recipe-share-backend.herokuapp.com/recipes", {
-      method: "get",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          throw new Error("Something went wrong when trying to get recipes");
+  async componentDidMount() {
+    try {
+      const res = await fetch(
+        "https://recipe-share-backend.herokuapp.com/recipes",
+        {
+          method: "get",
+          headers: {
+            "Content-Type": "application/json",
+          },
         }
-      })
-      .then((recipes) => {
-        this.setState({ recipes: recipes.data });
-        this.setState({ isLoading: false });
-      })
-      .catch((error) => console.log(error));
-  };
+      );
+      if (!res.ok) {
+        throw new Error("Something went wrong when trying to get recipes");
+      }
+      const recipes = await res.json();
+      this.setState({ recipes: recipes.data });
+      this.setState({ isLoading: false });
+    } catch (err) {
+      console.log(err);
+    }
+  }
 
   filterRecipes = () => {
     return this.state.recipes.filter((recipe) => {
