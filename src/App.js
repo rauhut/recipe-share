@@ -66,35 +66,6 @@ class App extends Component {
       } catch (err) {
         console.log(err);
       }
-
-      // fetch("https://recipe-share-backend.herokuapp.com/signin", {
-      //   method: "post",
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //     Authorization: token,
-      //   },
-      // })
-      //   .then((response) => response.json())
-      //   .then((data) => {
-      //     if (data.user) {
-      //       fetch("https://recipe-share-backend.herokuapp.com/profile", {
-      //         method: "get",
-      //         headers: {
-      //           "Content-Type": "application/json",
-      //           Authorization: token,
-      //         },
-      //       })
-      //         .then((response) => response.json())
-      //         .then((user) => {
-      //           if (user && user.username) {
-      //             this.loadUser(user);
-      //             this.onRouteChange("mainPage");
-      //             this.setState({ isSignedIn: true });
-      //           }
-      //         });
-      //     }
-      //   })
-      //   .catch(console.log);
     }
   }
 
