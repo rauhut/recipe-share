@@ -38,7 +38,7 @@ class Register extends React.Component {
     window.sessionStorage.setItem("token", token);
   };
 
-  onSubmitRegister = () => {
+  onSubmitRegister = async () => {
     this.setState({ isLoading: true });
 
     if (this.state.registerUsername === "") {
@@ -48,42 +48,44 @@ class Register extends React.Component {
       this.setState({ isPasswordInvalid: true });
     }
 
-    fetch("https://recipe-share-backend.herokuapp.com/register", {
-      method: "post",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        username: this.state.registerUsername,
-        password: this.state.registerPassword,
-      }),
-    })
-      .then((response) => {
-        if (response) {
-          return response.json();
-        } else {
-          this.setState({ invalidLogin: true });
-          throw new Error("Something went wrong when trying to register");
+    try {
+      const res = await fetch(
+        "https://recipe-share-backend.herokuapp.com/register",
+        {
+          method: "post",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            username: this.state.registerUsername,
+            password: this.state.registerPassword,
+          }),
         }
-      })
-      .then((data) => {
+      );
+      if (!res) {
+        this.setState({ invalidLogin: true });
+        throw new Error("Something went wrong when trying to register");
+      } else {
+        const data = await res.json();
         if (data.success) {
           if (data.token) {
             this.saveAuthTokenInSession(data.token);
-            fetch("https://recipe-share-backend.herokuapp.com/profile", {
-              method: "get",
-              headers: {
-                "Content-Type": "application/json",
-                Authorization: data.token,
-              },
-            })
-              .then((response) => response.json())
-              .then((user) => {
-                if (user && user.username) {
-                  this.props.loadUser(user);
-                  this.props.onRouteChange("signingIn");
-                  this.props.history.push("/");
+            try {
+              const response = await fetch(
+                "https://recipe-share-backend.herokuapp.com/profile",
+                {
+                  method: "get",
+                  headers: {
+                    "Content-Type": "application/json",
+                    Authorization: data.token,
+                  },
                 }
-              })
-              .catch(console.log);
+              );
+              const user = await response.json();
+              this.props.loadUser(user);
+              this.props.onRouteChange("signingIn");
+              this.props.history.push("/");
+            } catch (err) {
+              console.log(err);
+            }
           }
         } else {
           if (data.error) {
@@ -92,11 +94,11 @@ class Register extends React.Component {
           this.setState({ invalidLogin: true });
           this.setState({ isLoading: false });
         }
-      })
-      .catch((error) => {
-        console.log(error);
-        this.setState({ isLoading: false });
-      });
+      }
+    } catch (err) {
+      console.log(err);
+      this.setState({ isLoading: false });
+    }
   };
 
   onEnter = (e) => {
