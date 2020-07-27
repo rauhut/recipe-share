@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RecipeDisplay renders loading state without crashing 1`] = `
+"<div>
+  <h1>
+    Recipe Share
+  </h1>
+  <Spinner className=\\"spinner\\" color=\\"danger\\" tag=\\"div\\" type=\\"border\\">
+    Loading...
+  </Spinner>
+  <Modal isOpen={false} toggle={[Function (anonymous)]} autoFocus={true} centered={false} scrollable={false} role=\\"dialog\\" backdrop={true} keyboard={true} zIndex={1050} fade={true} onOpened={[Function: noop]} onClosed={[Function: noop]} modalTransition={{...}} backdropTransition={{...}} unmountOnClose={true} returnFocusAfterClose={true} container=\\"body\\">
+    <AddRecipeModal toggle={[Function (anonymous)]} navToRecipe={[Function (anonymous)]} />
+  </Modal>
+  <RecipeDisplay recipes={{...}} />
+</div>"
+`;
+
+exports[`RecipeDisplay renders page as logged in user without crashing 1`] = `
+"<div>
+  <h1>
+    Recipe Share
+  </h1>
+  <button id=\\"add-recipe\\" className=\\"button-secondary\\" onClick={[Function (anonymous)]}>
+    Add new recipe
+  </button>
+  <Modal isOpen={false} toggle={[Function (anonymous)]} autoFocus={true} centered={false} scrollable={false} role=\\"dialog\\" backdrop={true} keyboard={true} zIndex={1050} fade={true} onOpened={[Function: noop]} onClosed={[Function: noop]} modalTransition={{...}} backdropTransition={{...}} unmountOnClose={true} returnFocusAfterClose={true} container=\\"body\\">
+    <AddRecipeModal toggle={[Function (anonymous)]} navToRecipe={[Function (anonymous)]} />
+  </Modal>
+  <RecipeDisplay recipes={{...}} />
+</div>"
+`;
+
+exports[`RecipeDisplay renders page as logged out user without crashing 1`] = `
+"<div>
+  <h1>
+    Recipe Share
+  </h1>
+  <h6>
+    Create an account to add a new recipe
+  </h6>
+  <Modal isOpen={false} toggle={[Function (anonymous)]} autoFocus={true} centered={false} scrollable={false} role=\\"dialog\\" backdrop={true} keyboard={true} zIndex={1050} fade={true} onOpened={[Function: noop]} onClosed={[Function: noop]} modalTransition={{...}} backdropTransition={{...}} unmountOnClose={true} returnFocusAfterClose={true} container=\\"body\\">
+    <AddRecipeModal toggle={[Function (anonymous)]} navToRecipe={[Function (anonymous)]} />
+  </Modal>
+  <RecipeDisplay recipes={{...}} />
+</div>"
+`;

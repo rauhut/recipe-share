@@ -1,6 +1,5 @@
 import React from "react";
 import { Modal, Spinner } from "reactstrap";
-import { Link } from "react-router-dom";
 import AddRecipeModal from "../AddRecipeModal/AddRecipeModal";
 import RecipeDisplay from "../RecipeDisplay/RecipeDisplay";
 import "./MainPage.css";
@@ -15,28 +14,26 @@ class MainPage extends React.Component {
     };
   }
 
-  componentDidMount() {
-    fetch("https://recipe-share-backend.herokuapp.com/recipes", {
-      method: "get",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          throw new Error("Something went wrong when trying to get recipes");
+  async componentDidMount() {
+    try {
+      const res = await fetch(
+        "https://recipe-share-backend.herokuapp.com/recipes",
+        {
+          method: "get",
+          headers: {
+            "Content-Type": "application/json",
+          },
         }
-      })
-      .then((recipes) => {
-        this.setState({ recipes: recipes.data });
-        this.setState({ isLoading: false });
-      })
-      .catch((error) => {
-        console.log(error);
-        this.setState({ isLoading: false });
-      });
+      );
+      if (!res.ok) {
+        throw new Error("Something went wrong when trying to get recipes");
+      }
+      const recipes = await res.json();
+      this.setState({ recipes: recipes.data });
+      this.setState({ isLoading: false });
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   toggle = () => {
@@ -55,13 +52,15 @@ class MainPage extends React.Component {
         {this.state.isLoading ? (
           <Spinner className="spinner" color="danger" />
         ) : this.props.isSignedIn ? (
-          <button className="button-secondary" onClick={this.toggle}>
+          <button
+            id="add-recipe"
+            className="button-secondary"
+            onClick={this.toggle}
+          >
             Add new recipe
           </button>
         ) : (
-          <h6>
-            <Link to={"/register"}>Create an account to add a new recipe</Link>
-          </h6>
+          <h6>Create an account to add a new recipe</h6>
         )}
         <Modal isOpen={isCreateRecipeOpen} toggle={this.toggle}>
           <AddRecipeModal
