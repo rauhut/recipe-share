@@ -25,37 +25,76 @@ class App extends Component {
     this.state = initialState;
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     const token = window.sessionStorage.getItem("token");
+
     if (token) {
-      fetch("https://recipe-share-backend.herokuapp.com/signin", {
-        method: "post",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: token,
-        },
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          if (data.user) {
-            fetch("https://recipe-share-backend.herokuapp.com/profile", {
-              method: "get",
-              headers: {
-                "Content-Type": "application/json",
-                Authorization: token,
-              },
-            })
-              .then((response) => response.json())
-              .then((user) => {
-                if (user && user.username) {
-                  this.loadUser(user);
-                  this.onRouteChange("mainPage");
-                  this.setState({ isSignedIn: true });
-                }
-              });
+      try {
+        const res = await fetch(
+          "https://recipe-share-backend.herokuapp.com/signin",
+          {
+            method: "post",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: token,
+            },
           }
-        })
-        .catch(console.log);
+        );
+        const data = await res.json();
+        if (data.user) {
+          try {
+            const response = await fetch(
+              "https://recipe-share-backend.herokuapp.com/profile",
+              {
+                method: "get",
+                headers: {
+                  "Content-Type": "application/json",
+                  Authorization: token,
+                },
+              }
+            );
+            const user = await response.json();
+            if (user && user.username) {
+              this.loadUser(user);
+              this.onRouteChange("mainPage");
+              this.setState({ isSignedIn: true });
+            }
+          } catch (err) {
+            console.log(err);
+          }
+        }
+      } catch (err) {
+        console.log(err);
+      }
+
+      // fetch("https://recipe-share-backend.herokuapp.com/signin", {
+      //   method: "post",
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //     Authorization: token,
+      //   },
+      // })
+      //   .then((response) => response.json())
+      //   .then((data) => {
+      //     if (data.user) {
+      //       fetch("https://recipe-share-backend.herokuapp.com/profile", {
+      //         method: "get",
+      //         headers: {
+      //           "Content-Type": "application/json",
+      //           Authorization: token,
+      //         },
+      //       })
+      //         .then((response) => response.json())
+      //         .then((user) => {
+      //           if (user && user.username) {
+      //             this.loadUser(user);
+      //             this.onRouteChange("mainPage");
+      //             this.setState({ isSignedIn: true });
+      //           }
+      //         });
+      //     }
+      //   })
+      //   .catch(console.log);
     }
   }
 
