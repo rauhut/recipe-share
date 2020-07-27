@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ProfileDropdown renders for user 1`] = `
+"<div>
+  <Dropdown isOpen={false} toggle={[Function: bound ]} a11y={true} direction=\\"down\\" nav={false} active={false} addonType={false} inNavbar={false} setActiveFromChild={false}>
+    <DropdownToggle tag=\\"span\\" data-toggle=\\"dropdown\\" aria-expanded={[undefined]} aria-haspopup={true} color=\\"secondary\\">
+      <h3>
+        testuser
+      </h3>
+    </DropdownToggle>
+    <DropdownMenu right={true} style={{...}} tag=\\"div\\" flip={true}>
+      <DropdownItem tag=\\"button\\" toggle={true}>
+        <button className=\\"button-secondary\\" onClick={[Function: onClick]}>
+          Sign Out
+        </button>
+      </DropdownItem>
+    </DropdownMenu>
+  </Dropdown>
+</div>"
+`;
