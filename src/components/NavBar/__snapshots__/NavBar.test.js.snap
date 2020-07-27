@@ -1,0 +1,72 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NavBar renders for signed out user 1`] = `
+"<div>
+  <Navbar light={true} expand=\\"md\\" tag=\\"nav\\">
+    <Collapse className=\\"home-nav\\" isOpen={false} navbar={true} in={false} mountOnEnter={false} unmountOnExit={false} appear={false} enter={true} exit={true} onEnter={[Function: noop]} onEntering={[Function: noop]} onEntered={[Function: noop]} onExit={[Function: noop]} onExiting={[Function: noop]} onExited={[Function: noop]} tag=\\"div\\" timeout={350}>
+      <Link to=\\"/\\">
+        <NavbarBrand tag=\\"a\\">
+          Recipe Share
+        </NavbarBrand>
+      </Link>
+    </Collapse>
+    <div className=\\"search\\">
+      <Input className=\\"search-bar\\" type=\\"search\\" name=\\"search\\" id=\\"searchInput\\" placeholder=\\"Search for a Recipe\\" onChange={[Function (anonymous)]} />
+      <Link className=\\"search-btn\\" to=\\"/search\\">
+        <button className=\\"button-primary\\" onClick={[Function: onClick]}>
+          Search
+        </button>
+      </Link>
+    </div>
+    <NavbarToggler id=\\"nav-toggle\\" onClick={[Function (anonymous)]} tag=\\"button\\" type=\\"button\\" />
+    <Collapse isOpen={false} navbar={true} in={false} mountOnEnter={false} unmountOnExit={false} appear={false} enter={true} exit={true} onEnter={[Function: noop]} onEntering={[Function: noop]} onEntered={[Function: noop]} onExit={[Function: noop]} onExiting={[Function: noop]} onExited={[Function: noop]} tag=\\"div\\" timeout={350}>
+      <Nav className=\\"mr-auto\\" navbar={true} tag=\\"ul\\" vertical={false} />
+      <NavbarText tag=\\"span\\">
+        <div>
+          <Link to=\\"/signin\\">
+            <button className=\\"button-secondary\\">
+              Sign In
+            </button>
+          </Link>
+          <Link to=\\"/register\\">
+            <button className=\\"button-primary\\" color=\\"secondary\\">
+              Register
+            </button>
+          </Link>
+        </div>
+      </NavbarText>
+    </Collapse>
+  </Navbar>
+</div>"
+`;
+
+exports[`NavBar renders for signedin user 1`] = `
+"<div>
+  <Navbar light={true} expand=\\"md\\" tag=\\"nav\\">
+    <Collapse className=\\"home-nav\\" isOpen={false} navbar={true} in={false} mountOnEnter={false} unmountOnExit={false} appear={false} enter={true} exit={true} onEnter={[Function: noop]} onEntering={[Function: noop]} onEntered={[Function: noop]} onExit={[Function: noop]} onExiting={[Function: noop]} onExited={[Function: noop]} tag=\\"div\\" timeout={350}>
+      <Link to=\\"/\\">
+        <NavbarBrand tag=\\"a\\">
+          Recipe Share
+        </NavbarBrand>
+      </Link>
+    </Collapse>
+    <div className=\\"search\\">
+      <Input className=\\"search-bar\\" type=\\"search\\" name=\\"search\\" id=\\"searchInput\\" placeholder=\\"Search for a Recipe\\" onChange={[Function (anonymous)]} />
+      <Link className=\\"search-btn\\" to=\\"/search\\">
+        <button className=\\"button-primary\\" onClick={[Function: onClick]}>
+          Search
+        </button>
+      </Link>
+    </div>
+    <NavbarToggler id=\\"nav-toggle\\" onClick={[Function (anonymous)]} tag=\\"button\\" type=\\"button\\" />
+    <Collapse isOpen={false} navbar={true} in={false} mountOnEnter={false} unmountOnExit={false} appear={false} enter={true} exit={true} onEnter={[Function: noop]} onEntering={[Function: noop]} onEntered={[Function: noop]} onExit={[Function: noop]} onExiting={[Function: noop]} onExited={[Function: noop]} tag=\\"div\\" timeout={350}>
+      <Nav className=\\"mr-auto\\" navbar={true} tag=\\"ul\\" vertical={false} />
+      <NavbarText tag=\\"span\\">
+        <div>
+          <ProfileDropdown onRouteChange={[undefined]} toggleModal={[undefined]} user={{...}} />
+        </div>
+      </NavbarText>
+    </Collapse>
+  </Navbar>
+</div>"
+`;

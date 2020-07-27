@@ -62,7 +62,7 @@ class NavBar extends React.Component {
               </button>
             </Link>
           </div>
-          <NavbarToggler onClick={this.toggle} />
+          <NavbarToggler id="nav-toggle" onClick={this.toggle} />
           <Collapse isOpen={isOpen} navbar>
             <Nav className="mr-auto" navbar></Nav>
             <NavbarText>
