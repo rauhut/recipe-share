@@ -42,6 +42,21 @@ label input {
 ol > li,
 .direction-container {
   margin-left: 30px;
+  position: relative;
+}
+
+ol > li:before {
+  counter-increment: list;
+  content: counter(list) ".";
+  position: absolute;
+  right: 100%;
+  margin-right: 5px;
+  top: 0;
+}
+
+ol {
+  list-style: none;
+  counter-reset: list;
 }
 
 .recipe-image > img {
