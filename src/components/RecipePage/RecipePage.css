@@ -7,6 +7,10 @@ ul {
   justify-content: space-between;
 }
 
+.modify-btns {
+  display: flex;
+}
+
 .recipe {
   max-width: 1000px;
   margin: 20px auto;

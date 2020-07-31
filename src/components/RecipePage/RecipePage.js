@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./RecipePage.css";
+import EditRecipeModal from "../AddRecipeModal/EditRecipeModal";
 import {
   Spinner,
   Modal,
@@ -16,12 +17,14 @@ class RecipePage extends Component {
         name: "",
         cookTime: "",
         description: "",
-        ingredients: [],
-        steps: [],
+        ingredients: [""],
+        steps: [""],
+        picture: "",
         _id: "",
       },
       isLoading: true,
-      modal: false,
+      deleteModal: false,
+      editModal: false,
     };
   }
 
@@ -49,8 +52,17 @@ class RecipePage extends Component {
       .catch((error) => console.log(error));
   }
 
-  toggle = () => {
-    this.setState({ modal: !this.state.modal });
+  toggleDelete = () => {
+    this.setState({ deleteModal: !this.state.deleteModal });
+  };
+
+  toggleEdit = () => {
+    this.setState({ editModal: !this.state.editModal });
+    console.log("toggles");
+  };
+
+  navToRecipe = (id) => {
+    this.props.history.push(`/recipe/${id}`);
   };
 
   deleteRecipe(id) {
@@ -83,7 +95,7 @@ class RecipePage extends Component {
       createdBy,
       _id,
     } = this.state.recipe;
-    const { modal, isLoading } = this.state;
+    const { deleteModal, editModal, isLoading, recipe } = this.state;
     return (
       <div>
         {isLoading ? (
@@ -98,36 +110,54 @@ class RecipePage extends Component {
                 &laquo; Back
               </button>
               {createdBy === this.props.user.id && (
-                <div className="delete-btn">
-                  <button
-                    className="button-secondary"
-                    id="delete-btn"
-                    onClick={this.toggle}
-                  >
-                    Delete
-                  </button>
-                  <Modal isOpen={modal} toggle={this.toggle}>
-                    <ModalHeader toggle={this.toggle}>
-                      Delete "{name}"?
-                    </ModalHeader>
-                    <ModalBody>
-                      Are you sure that you want to delete this recipe?
-                    </ModalBody>
-                    <ModalFooter>
-                      <button
-                        className="button-secondary"
-                        onClick={() => this.deleteRecipe(_id)}
-                      >
-                        Delete
-                      </button>{" "}
-                      <button
-                        className="button-primary"
-                        id="cancel-btn"
-                        onClick={this.toggle}
-                      >
-                        Cancel
-                      </button>
-                    </ModalFooter>
+                <div className="modify-btns">
+                  <div className="delete-btn">
+                    <button
+                      className="button-secondary"
+                      id="delete-btn"
+                      onClick={this.toggleDelete}
+                    >
+                      Delete
+                    </button>
+                    <Modal isOpen={deleteModal} toggle={this.toggleDelete}>
+                      <ModalHeader toggle={this.toggleDelete}>
+                        Delete "{name}"?
+                      </ModalHeader>
+                      <ModalBody>
+                        Are you sure that you want to delete this recipe?
+                      </ModalBody>
+                      <ModalFooter>
+                        <button
+                          className="button-secondary"
+                          onClick={() => this.deleteRecipe(_id)}
+                        >
+                          Delete
+                        </button>{" "}
+                        <button
+                          className="button-primary"
+                          id="cancel-btn"
+                          onClick={this.toggleDelete}
+                        >
+                          Cancel
+                        </button>
+                      </ModalFooter>
+                    </Modal>
+                  </div>
+                  <div className="edit-btn">
+                    <button
+                      className="button-secondary"
+                      id="edit-btn"
+                      onClick={this.toggleEdit}
+                    >
+                      Edit
+                    </button>
+                  </div>
+                  <Modal isOpen={editModal} toggle={this.toggleEdit}>
+                    <EditRecipeModal
+                      toggle={this.toggleEdit}
+                      navToRecipe={this.navToRecipe}
+                      recipe={recipe}
+                    ></EditRecipeModal>
                   </Modal>
                 </div>
               )}
