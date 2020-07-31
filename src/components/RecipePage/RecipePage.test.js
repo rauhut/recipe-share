@@ -48,13 +48,31 @@ describe("RecipePage", () => {
     wrapper = shallow(<RecipePage {...mockProps} />);
     wrapper.setState({ isLoading: false, recipe: mockRecipe });
     wrapper.find('[id="delete-btn"]').simulate("click");
-    expect(wrapper.state("modal")).toEqual(true);
+    expect(wrapper.state("deleteModal")).toEqual(true);
   });
 
   it("closes delete modal when cancel button is clicked", () => {
     wrapper = shallow(<RecipePage {...mockProps} />);
-    wrapper.setState({ isLoading: false, recipe: mockRecipe, modal: true });
+    wrapper.setState({
+      isLoading: false,
+      recipe: mockRecipe,
+      deleteModal: true,
+    });
     wrapper.find('[id="cancel-btn"]').simulate("click");
-    expect(wrapper.state("modal")).toEqual(false);
+    expect(wrapper.state("deleteModal")).toEqual(false);
+  });
+
+  it("opens edit modal when delete button is clicked", () => {
+    wrapper = shallow(<RecipePage {...mockProps} />);
+    wrapper.setState({ isLoading: false, recipe: mockRecipe });
+    wrapper.find('[id="edit-btn"]').simulate("click");
+    expect(wrapper.state("editModal")).toEqual(true);
+  });
+
+  it("closes edit modal when cancel button is clicked", () => {
+    wrapper = shallow(<RecipePage {...mockProps} />);
+    wrapper.setState({ isLoading: false, recipe: mockRecipe, editModal: true });
+    wrapper.find('[id="edit-btn"]').simulate("click");
+    expect(wrapper.state("editModal")).toEqual(false);
   });
 });

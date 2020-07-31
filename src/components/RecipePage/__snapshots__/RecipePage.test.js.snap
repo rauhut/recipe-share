@@ -7,28 +7,38 @@ exports[`RecipePage renders component after load without crashing 1`] = `
       <button className=\\"button-secondary\\" onClick={[Function: onClick]}>
         « Back
       </button>
-      <div className=\\"delete-btn\\">
-        <button className=\\"button-secondary\\" id=\\"delete-btn\\" onClick={[Function (anonymous)]}>
-          Delete
-        </button>
+      <div className=\\"modify-btns\\">
+        <div className=\\"delete-btn\\">
+          <button className=\\"button-secondary\\" id=\\"delete-btn\\" onClick={[Function (anonymous)]}>
+            Delete
+          </button>
+          <Modal isOpen={false} toggle={[Function (anonymous)]} autoFocus={true} centered={false} scrollable={false} role=\\"dialog\\" backdrop={true} keyboard={true} zIndex={1050} fade={true} onOpened={[Function: noop]} onClosed={[Function: noop]} modalTransition={{...}} backdropTransition={{...}} unmountOnClose={true} returnFocusAfterClose={true} container=\\"body\\">
+            <ModalHeader toggle={[Function (anonymous)]} tag=\\"h5\\" wrapTag=\\"div\\" closeAriaLabel=\\"Close\\" charCode={215}>
+              Delete &quot;
+              meatballs
+              &quot;?
+            </ModalHeader>
+            <ModalBody tag=\\"div\\">
+              Are you sure that you want to delete this recipe?
+            </ModalBody>
+            <ModalFooter tag=\\"div\\">
+              <button className=\\"button-secondary\\" onClick={[Function: onClick]}>
+                Delete
+              </button>
+               
+              <button className=\\"button-primary\\" id=\\"cancel-btn\\" onClick={[Function (anonymous)]}>
+                Cancel
+              </button>
+            </ModalFooter>
+          </Modal>
+        </div>
+        <div className=\\"edit-btn\\">
+          <button className=\\"button-secondary\\" id=\\"edit-btn\\" onClick={[Function (anonymous)]}>
+            Edit
+          </button>
+        </div>
         <Modal isOpen={false} toggle={[Function (anonymous)]} autoFocus={true} centered={false} scrollable={false} role=\\"dialog\\" backdrop={true} keyboard={true} zIndex={1050} fade={true} onOpened={[Function: noop]} onClosed={[Function: noop]} modalTransition={{...}} backdropTransition={{...}} unmountOnClose={true} returnFocusAfterClose={true} container=\\"body\\">
-          <ModalHeader toggle={[Function (anonymous)]} tag=\\"h5\\" wrapTag=\\"div\\" closeAriaLabel=\\"Close\\" charCode={215}>
-            Delete &quot;
-            meatballs
-            &quot;?
-          </ModalHeader>
-          <ModalBody tag=\\"div\\">
-            Are you sure that you want to delete this recipe?
-          </ModalBody>
-          <ModalFooter tag=\\"div\\">
-            <button className=\\"button-secondary\\" onClick={[Function: onClick]}>
-              Delete
-            </button>
-             
-            <button className=\\"button-primary\\" id=\\"cancel-btn\\" onClick={[Function (anonymous)]}>
-              Cancel
-            </button>
-          </ModalFooter>
+          <AddRecipeModal toggle={[Function (anonymous)]} navToRecipe={[Function (anonymous)]} recipe={{...}} />
         </Modal>
       </div>
     </div>
@@ -122,28 +132,38 @@ exports[`RecipePage renders component with delete recipe modal open 1`] = `
       <button className=\\"button-secondary\\" onClick={[Function: onClick]}>
         « Back
       </button>
-      <div className=\\"delete-btn\\">
-        <button className=\\"button-secondary\\" id=\\"delete-btn\\" onClick={[Function (anonymous)]}>
-          Delete
-        </button>
-        <Modal isOpen={true} toggle={[Function (anonymous)]} autoFocus={true} centered={false} scrollable={false} role=\\"dialog\\" backdrop={true} keyboard={true} zIndex={1050} fade={true} onOpened={[Function: noop]} onClosed={[Function: noop]} modalTransition={{...}} backdropTransition={{...}} unmountOnClose={true} returnFocusAfterClose={true} container=\\"body\\">
-          <ModalHeader toggle={[Function (anonymous)]} tag=\\"h5\\" wrapTag=\\"div\\" closeAriaLabel=\\"Close\\" charCode={215}>
-            Delete &quot;
-            meatballs
-            &quot;?
-          </ModalHeader>
-          <ModalBody tag=\\"div\\">
-            Are you sure that you want to delete this recipe?
-          </ModalBody>
-          <ModalFooter tag=\\"div\\">
-            <button className=\\"button-secondary\\" onClick={[Function: onClick]}>
-              Delete
-            </button>
-             
-            <button className=\\"button-primary\\" id=\\"cancel-btn\\" onClick={[Function (anonymous)]}>
-              Cancel
-            </button>
-          </ModalFooter>
+      <div className=\\"modify-btns\\">
+        <div className=\\"delete-btn\\">
+          <button className=\\"button-secondary\\" id=\\"delete-btn\\" onClick={[Function (anonymous)]}>
+            Delete
+          </button>
+          <Modal isOpen={false} toggle={[Function (anonymous)]} autoFocus={true} centered={false} scrollable={false} role=\\"dialog\\" backdrop={true} keyboard={true} zIndex={1050} fade={true} onOpened={[Function: noop]} onClosed={[Function: noop]} modalTransition={{...}} backdropTransition={{...}} unmountOnClose={true} returnFocusAfterClose={true} container=\\"body\\">
+            <ModalHeader toggle={[Function (anonymous)]} tag=\\"h5\\" wrapTag=\\"div\\" closeAriaLabel=\\"Close\\" charCode={215}>
+              Delete &quot;
+              meatballs
+              &quot;?
+            </ModalHeader>
+            <ModalBody tag=\\"div\\">
+              Are you sure that you want to delete this recipe?
+            </ModalBody>
+            <ModalFooter tag=\\"div\\">
+              <button className=\\"button-secondary\\" onClick={[Function: onClick]}>
+                Delete
+              </button>
+               
+              <button className=\\"button-primary\\" id=\\"cancel-btn\\" onClick={[Function (anonymous)]}>
+                Cancel
+              </button>
+            </ModalFooter>
+          </Modal>
+        </div>
+        <div className=\\"edit-btn\\">
+          <button className=\\"button-secondary\\" id=\\"edit-btn\\" onClick={[Function (anonymous)]}>
+            Edit
+          </button>
+        </div>
+        <Modal isOpen={false} toggle={[Function (anonymous)]} autoFocus={true} centered={false} scrollable={false} role=\\"dialog\\" backdrop={true} keyboard={true} zIndex={1050} fade={true} onOpened={[Function: noop]} onClosed={[Function: noop]} modalTransition={{...}} backdropTransition={{...}} unmountOnClose={true} returnFocusAfterClose={true} container=\\"body\\">
+          <AddRecipeModal toggle={[Function (anonymous)]} navToRecipe={[Function (anonymous)]} recipe={{...}} />
         </Modal>
       </div>
     </div>
