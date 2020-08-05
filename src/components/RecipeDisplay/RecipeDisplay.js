@@ -9,6 +9,7 @@ import {
 } from "reactstrap";
 import { Link } from "react-router-dom";
 import "./RecipeDisplay.css";
+import defaultImage from "../../Default.jpg";
 
 const RecipeDisplay = ({ recipes }) => {
   return (
@@ -20,7 +21,11 @@ const RecipeDisplay = ({ recipes }) => {
               top
               width="100%"
               src={recipe.picture}
-              alt="Card image cap"
+              onError={(e) => {
+                e.target.onerror = null;
+                e.target.src = defaultImage;
+              }}
+              alt={`${recipe.name}`}
             />
             <CardBody>
               <CardTitle>{recipe.name}</CardTitle>

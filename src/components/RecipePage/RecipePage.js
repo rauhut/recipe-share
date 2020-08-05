@@ -8,6 +8,7 @@ import {
   ModalBody,
   ModalFooter,
 } from "reactstrap";
+import defaultImage from "../../Default.jpg";
 
 class RecipePage extends Component {
   constructor(props) {
@@ -169,7 +170,14 @@ class RecipePage extends Component {
             <div className="recipe-description">{description}</div>
             <hr></hr>
             <div className="recipe-image">
-              <img src={picture} alt={name} />
+              <img
+                src={picture}
+                alt={name}
+                onError={(e) => {
+                  e.target.onerror = null;
+                  e.target.src = defaultImage;
+                }}
+              />
             </div>
             <div className="recipe-ingredients">
               <h3>Ingredients</h3>
