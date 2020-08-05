@@ -12,6 +12,7 @@ import {
   InputGroupAddon,
   FormFeedback,
   Alert,
+  Tooltip,
 } from "reactstrap";
 import "./AddRecipeModal.css";
 
@@ -31,6 +32,7 @@ class AddRecipeModal extends React.Component {
       isPictureInvalid: false,
       errMsg: "Unable to create recipe",
       invalidRecipe: false,
+      tooltipOpen: false,
     };
   }
 
@@ -228,7 +230,12 @@ class AddRecipeModal extends React.Component {
     return list.map((number, i) => <option>{number}</option>);
   }
 
+  toggleTooltip = () => {
+    this.setState({ tooltipOpen: !this.state.tooltipOpen });
+  };
+
   render() {
+    const { tooltipOpen } = this.state;
     const { toggle } = this.props;
     return (
       <Fragment>
@@ -307,12 +314,26 @@ class AddRecipeModal extends React.Component {
               />
             </FormGroup>
             <FormGroup>
-              <Label>Photo</Label>
+              <Label>
+                Photo{" "}
+                <Button id="tooltip" color="secondary">
+                  ?
+                </Button>
+                <Tooltip
+                  placement="right"
+                  isOpen={tooltipOpen}
+                  target="tooltip"
+                  toggle={this.toggleTooltip}
+                >
+                  Please add an existing URL to use as an image for this recipe.
+                  Use an image address that ends in jpeg, jpg, gif, or png
+                </Tooltip>
+              </Label>
               <Input
                 type="text"
                 name="photo"
                 id="photo"
-                placeholder="Add a URL for a photo to use for this recipe"
+                placeholder="Add a URL of an image to use for this recipe"
                 onChange={this.onPictureChange}
                 invalid={this.state.isPictureInvalid}
               />

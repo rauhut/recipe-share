@@ -358,7 +358,7 @@ class AddRecipeModal extends React.Component {
                 type="text"
                 name="photo"
                 id="photo"
-                placeholder="Add a URL for a photo to use for this recipe"
+                placeholder="Add a URL of an image to use for this recipe"
                 onChange={this.onPictureChange}
                 invalid={this.state.isPictureInvalid}
                 defaultValue={recipePicture}
