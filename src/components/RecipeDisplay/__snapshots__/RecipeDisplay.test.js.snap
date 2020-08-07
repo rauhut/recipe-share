@@ -3,7 +3,7 @@
 exports[`RecipeDisplay renders without crashing 1`] = `
 "<div className=\\"recipe-card-grid\\">
   <Card tag=\\"div\\">
-    <CardImg top={true} width=\\"100%\\" src={[undefined]} alt=\\"Card image cap\\" tag=\\"img\\" />
+    <CardImg top={true} width=\\"100%\\" src={[undefined]} onError={[Function: onError]} alt=\\"cookies\\" tag=\\"img\\" />
     <CardBody tag=\\"div\\">
       <CardTitle tag=\\"div\\">
         cookies
@@ -22,7 +22,7 @@ exports[`RecipeDisplay renders without crashing 1`] = `
     </CardBody>
   </Card>
   <Card tag=\\"div\\">
-    <CardImg top={true} width=\\"100%\\" src={[undefined]} alt=\\"Card image cap\\" tag=\\"img\\" />
+    <CardImg top={true} width=\\"100%\\" src={[undefined]} onError={[Function: onError]} alt=\\"meatballs\\" tag=\\"img\\" />
     <CardBody tag=\\"div\\">
       <CardTitle tag=\\"div\\">
         meatballs

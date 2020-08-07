@@ -16,7 +16,7 @@ const RecipeDisplay = ({ recipes }) => {
     <div className="recipe-card-grid">
       {recipes.map((recipe) => {
         return (
-          <Card>
+          <Card key={`${recipe._id}`}>
             <CardImg
               top
               width="100%"
