@@ -19,9 +19,15 @@
 
 .home-nav {
   flex-grow: 0 !important;
+  padding-right: 10px;
 }
 
-.navbar-brand {
-  color: white !important;
-  font-weight: 400;
+.home-nav > a {
+  color: white;
+  font-size: 1.25rem;
+}
+
+.home-nav > a:hover {
+  text-decoration: none;
+  color: white;
 }

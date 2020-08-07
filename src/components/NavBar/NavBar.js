@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import {
   Collapse,
   Navbar,
-  NavbarBrand,
   Nav,
   Input,
   NavbarText,
@@ -38,9 +37,7 @@ class NavBar extends React.Component {
       <div>
         <Navbar light expand="md">
           <Collapse className="home-nav" isOpen={isOpen} navbar>
-            <Link to={"/"}>
-              <NavbarBrand>Recipe Share</NavbarBrand>
-            </Link>
+            <Link to={"/"}>Recipe Share</Link>
           </Collapse>
           <div className="search">
             <Input
