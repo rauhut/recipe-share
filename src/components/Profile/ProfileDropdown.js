@@ -1,10 +1,5 @@
 import React from "react";
-import {
-  Dropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-} from "reactstrap";
+import { Dropdown, DropdownToggle, DropdownMenu } from "reactstrap";
 import "./ProfileDropdown.css";
 
 class ProfileDropdown extends React.Component {
@@ -39,35 +34,33 @@ class ProfileDropdown extends React.Component {
               backgroundColor: "rgba(255, 255, 255, 0.5)",
             }}
           >
-            <DropdownItem>
-              <button
-                className="button-secondary"
-                onClick={() => {
-                  const token = window.sessionStorage.getItem("token");
-                  fetch("https://recipe-share-backend.herokuapp.com/signout", {
-                    method: "post",
-                    headers: {
-                      "Content-Type": "application/json",
-                      Authorization: token,
-                    },
+            <button
+              className="button-secondary"
+              onClick={() => {
+                const token = window.sessionStorage.getItem("token");
+                fetch("https://recipe-share-backend.herokuapp.com/signout", {
+                  method: "post",
+                  headers: {
+                    "Content-Type": "application/json",
+                    Authorization: token,
+                  },
+                })
+                  .then((response) => {
+                    if (response.ok) {
+                      return response;
+                    } else {
+                      throw new Error(
+                        "Something went wrong when trying to logout"
+                      );
+                    }
                   })
-                    .then((response) => {
-                      if (response.ok) {
-                        return response;
-                      } else {
-                        throw new Error(
-                          "Something went wrong when trying to logout"
-                        );
-                      }
-                    })
-                    .catch(console.log);
-                  window.sessionStorage.removeItem("token");
-                  this.props.onRouteChange("signout");
-                }}
-              >
-                Sign Out
-              </button>
-            </DropdownItem>
+                  .catch(console.log);
+                window.sessionStorage.removeItem("token");
+                this.props.onRouteChange("signout");
+              }}
+            >
+              Sign Out
+            </button>
           </DropdownMenu>
         </Dropdown>
       </div>

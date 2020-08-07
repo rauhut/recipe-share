@@ -9,11 +9,9 @@ exports[`ProfileDropdown renders for user 1`] = `
       </h3>
     </DropdownToggle>
     <DropdownMenu right={true} style={{...}} tag=\\"div\\" flip={true}>
-      <DropdownItem tag=\\"button\\" toggle={true}>
-        <button className=\\"button-secondary\\" onClick={[Function: onClick]}>
-          Sign Out
-        </button>
-      </DropdownItem>
+      <button className=\\"button-secondary\\" onClick={[Function: onClick]}>
+        Sign Out
+      </button>
     </DropdownMenu>
   </Dropdown>
 </div>"
