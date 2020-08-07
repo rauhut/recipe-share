@@ -59,7 +59,6 @@ class RecipePage extends Component {
 
   toggleEdit = () => {
     this.setState({ editModal: !this.state.editModal });
-    console.log("toggles");
   };
 
   navToRecipe = (id) => {

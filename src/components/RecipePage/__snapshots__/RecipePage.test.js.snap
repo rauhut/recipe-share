@@ -38,7 +38,7 @@ exports[`RecipePage renders component after load without crashing 1`] = `
           </button>
         </div>
         <Modal isOpen={false} toggle={[Function (anonymous)]} autoFocus={true} centered={false} scrollable={false} role=\\"dialog\\" backdrop={true} keyboard={true} zIndex={1050} fade={true} onOpened={[Function: noop]} onClosed={[Function: noop]} modalTransition={{...}} backdropTransition={{...}} unmountOnClose={true} returnFocusAfterClose={true} container=\\"body\\">
-          <AddRecipeModal toggle={[Function (anonymous)]} navToRecipe={[Function (anonymous)]} recipe={{...}} />
+          <EditRecipeModal toggle={[Function (anonymous)]} navToRecipe={[Function (anonymous)]} recipe={{...}} />
         </Modal>
       </div>
     </div>
@@ -56,7 +56,7 @@ exports[`RecipePage renders component after load without crashing 1`] = `
     </div>
     <hr />
     <div className=\\"recipe-image\\">
-      <img src={[undefined]} alt=\\"meatballs\\" />
+      <img src={[undefined]} alt=\\"meatballs\\" onError={[Function: onError]} />
     </div>
     <div className=\\"recipe-ingredients\\">
       <h3>
@@ -163,7 +163,7 @@ exports[`RecipePage renders component with delete recipe modal open 1`] = `
           </button>
         </div>
         <Modal isOpen={false} toggle={[Function (anonymous)]} autoFocus={true} centered={false} scrollable={false} role=\\"dialog\\" backdrop={true} keyboard={true} zIndex={1050} fade={true} onOpened={[Function: noop]} onClosed={[Function: noop]} modalTransition={{...}} backdropTransition={{...}} unmountOnClose={true} returnFocusAfterClose={true} container=\\"body\\">
-          <AddRecipeModal toggle={[Function (anonymous)]} navToRecipe={[Function (anonymous)]} recipe={{...}} />
+          <EditRecipeModal toggle={[Function (anonymous)]} navToRecipe={[Function (anonymous)]} recipe={{...}} />
         </Modal>
       </div>
     </div>
@@ -181,7 +181,7 @@ exports[`RecipePage renders component with delete recipe modal open 1`] = `
     </div>
     <hr />
     <div className=\\"recipe-image\\">
-      <img src={[undefined]} alt=\\"meatballs\\" />
+      <img src={[undefined]} alt=\\"meatballs\\" onError={[Function: onError]} />
     </div>
     <div className=\\"recipe-ingredients\\">
       <h3>
