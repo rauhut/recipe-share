@@ -3,7 +3,7 @@
 exports[`App renders page without crashing 1`] = `
 "<BrowserRouter>
   <div className=\\"App\\">
-    <NavBar isSignedIn={false} onRouteChange={[Function (anonymous)]} toggleModal={[Function (anonymous)]} user={{...}} onRecipeSearch={[Function (anonymous)]} />
+    <Route path=\\"/\\" render={[Function: render]} />
     <Switch>
       <Route path=\\"/\\" exact={true} render={[Function: render]} />
       <Route path=\\"/signin\\" render={[Function: render]} />

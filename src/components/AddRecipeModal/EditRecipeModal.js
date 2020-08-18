@@ -35,7 +35,6 @@ const EditRecipeModal = ({ toggle, recipe }) => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         if (data.success) {
           toggle();
           window.location.reload(false);

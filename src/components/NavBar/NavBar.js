@@ -29,6 +29,17 @@ class NavBar extends React.Component {
     this.setState({ isOpen: !this.state.isOpen });
   };
 
+  onSubmitSearch = () => {
+    this.props.onRecipeSearch(this.state.searchEntry);
+    this.props.history.push("/search");
+  };
+
+  onEnter = (e) => {
+    if (e.which === 13) {
+      this.onSubmitSearch();
+    }
+  };
+
   render() {
     const { user } = this.props;
     const { isOpen } = this.state;
@@ -39,7 +50,7 @@ class NavBar extends React.Component {
           <Collapse className="home-nav" isOpen={isOpen} navbar>
             <Link to={"/"}>Recipe Share</Link>
           </Collapse>
-          <div className="search">
+          <div className="search" onKeyPress={this.onEnter}>
             <Input
               className="search-bar"
               type="search"
@@ -48,16 +59,12 @@ class NavBar extends React.Component {
               placeholder="Search for a Recipe"
               onChange={this.onSearchChange}
             />
-            <Link className="search-btn" to={`/search`}>
-              <button
-                className="button-primary"
-                onClick={() =>
-                  this.props.onRecipeSearch(this.state.searchEntry)
-                }
-              >
-                Search
-              </button>
-            </Link>
+            <button
+              className="button-primary"
+              onClick={() => this.onSubmitSearch()}
+            >
+              Search
+            </button>
           </div>
           <NavbarToggler id="nav-toggle" onClick={this.toggle} />
           <Collapse isOpen={isOpen} navbar>

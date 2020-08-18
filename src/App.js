@@ -104,12 +104,18 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-          <NavBar
-            isSignedIn={isSignedIn}
-            onRouteChange={this.onRouteChange}
-            toggleModal={this.toggleModal}
-            user={user}
-            onRecipeSearch={this.onRecipeSearch}
+          <Route
+            path="/"
+            render={(props) => (
+              <NavBar
+                {...props}
+                isSignedIn={isSignedIn}
+                onRouteChange={this.onRouteChange}
+                toggleModal={this.toggleModal}
+                user={user}
+                onRecipeSearch={this.onRecipeSearch}
+              />
+            )}
           />
           <Switch>
             <Route
