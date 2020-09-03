@@ -60,7 +60,7 @@ class NavBar extends React.Component {
               onChange={this.onSearchChange}
             />
             <button
-              className="button-primary"
+              className="button-primary search-btn"
               onClick={() => this.onSubmitSearch()}
             >
               Search

@@ -31,3 +31,12 @@
   text-decoration: none;
   color: white;
 }
+
+@media screen and (max-width: 700px) {
+  .home-nav {
+    display: none;
+  }
+  .search-btn {
+    display: none;
+  }
+}
